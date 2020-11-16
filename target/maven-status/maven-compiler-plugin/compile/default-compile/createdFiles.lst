@@ -1,0 +1,15 @@
+org\sid\FeignClient\RestAuth.class
+org\sid\dao\AppRoleRepository.class
+org\sid\entities\AppRole.class
+org\sid\entities\AppUser.class
+org\sid\sec\SecurityConfig.class
+org\sid\service\AccountServiceImpl.class
+org\sid\common\UserForm.class
+org\sid\web\UserController.class
+org\sid\sec\UserDetailsServiceImpl.class
+org\sid\service\AccountService.class
+org\sid\sec\JWTAuthenticationFilter.class
+org\sid\dao\AppUserRepository.class
+org\sid\sec\JWTAuthorizationFiler.class
+org\sid\SecServiceApplication.class
+org\sid\sec\SecurityParams.class

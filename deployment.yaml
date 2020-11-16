@@ -1,0 +1,58 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: auth-service
+  labels:
+    name: auth-service
+spec:
+  ports:
+    - nodePort: 30163 
+      port: 8080      
+      targetPort: 8080  
+      protocol: TCP
+  selector:           
+    app: auth-service
+  type: NodePort       
+
+---
+apiVersion: apps/v1 
+kind: Deployment    
+metadata:              
+  name: auth-service
+spec:                
+  selector:         
+    matchLabels:
+      app: auth-service
+  replicas: 1        
+  template:
+    metadata:
+      labels:        
+        app: auth-service
+    spec:
+      containers:
+        - name: auth-service
+          image: omarkorbi/auth-service
+          ports:
+            - containerPort: 3305                
+          env:   # Setting Enviornmental Variables
+          - name: DB_HOST   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: db-conf  # name of configMap
+                key: host
+          - name: DB_NAME  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: db-conf 
+                key: name
+          - name: DB_USERNAME  # Setting Database username from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials # Secret Name
+                key: username
+          - name: DB_PASSWORD # Setting Database password from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: password     
+        
