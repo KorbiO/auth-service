@@ -6,7 +6,7 @@ clusters:
   name: docker-desktop
 - cluster:
     certificate-authority: C:\Users\user\.minikube\ca.crt
-    server: https://127.0.0.1:32768
+    server: https://127.0.0.1:32776
   name: minikube
 contexts:
 - context:
